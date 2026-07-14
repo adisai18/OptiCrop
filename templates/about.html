@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | OptiCrop</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-opticrop sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class="fa-solid fa-leaf"></i> Opti<span>Crop</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/crop">Crop Recommendation</a></li>
+          <li class="nav-item"><a class="nav-link" href="/fertilizer">Fertilizer Recommendation</a></li>
+          <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="text-center mb-5">
+          <h2 class="section-title"><i class="fa-solid fa-circle-info"></i> About OptiCrop</h2>
+          <p class="section-subtitle">Smart Agricultural Production Optimization Engine</p>
+        </div>
+
+        <div class="feature-card mb-4">
+          <h5>Our Mission</h5>
+          <p class="text-muted">
+            OptiCrop was built to help farmers, students and agri-tech enthusiasts make
+            faster, data-informed decisions about what to grow, how to fertilize it, and
+            what yield to expect — combining Machine Learning with practical agronomic
+            knowledge in one simple web app.
+          </p>
+        </div>
+
+        <div class="feature-card mb-4">
+          <h5>How It Works</h5>
+          <ul class="text-muted">
+            <li><strong>Crop Recommendation</strong> uses a RandomForestClassifier trained on
+              2,200+ soil samples spanning 22 crops (N, P, K, temperature, humidity, pH and
+              rainfall) to recommend the most suitable crop with a confidence score.</li>
+            <li><strong>Fertilizer Recommendation</strong> compares your soil's NPK profile
+              against published ideal ranges for the selected crop and suggests a corrective
+              fertilizer action.</li>
+            <li><strong>Yield Prediction</strong> is a demonstrative RandomForestRegressor
+              estimate for education/prototyping purposes (see the README for details on this
+              approximation).</li>
+            <li><strong>Weather Integration</strong> pulls live conditions from the OpenWeather
+              API so recommendations can be checked against real-time context.</li>
+          </ul>
+        </div>
+
+        <div class="feature-card">
+          <h5>Built With</h5>
+          <div class="d-flex flex-wrap gap-2 mt-2">
+            <span class="badge bg-success">Python</span>
+            <span class="badge bg-success">Flask</span>
+            <span class="badge bg-success">Scikit-Learn</span>
+            <span class="badge bg-success">Pandas</span>
+            <span class="badge bg-success">NumPy</span>
+            <span class="badge bg-success">Bootstrap 5</span>
+            <span class="badge bg-success">JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer-opticrop">
+    <div class="container text-center">
+      <h5><i class="fa-solid fa-leaf"></i> OptiCrop</h5>
+      <p class="mb-2">Smart Agricultural Production Optimization Engine</p>
+      <div class="mb-3">
+        <a href="/" class="mx-2">Home</a>
+        <a href="/crop" class="mx-2">Crop</a>
+        <a href="/fertilizer" class="mx-2">Fertilizer</a>
+        <a href="/dashboard" class="mx-2">Dashboard</a>
+        <a href="/about" class="mx-2">About</a>
+        <a href="/contact" class="mx-2">Contact</a>
+      </div>
+      <small>&copy; 2026 OptiCrop. Built for the APSCHE Internship Program.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OptiCrop | Smart Agricultural Production Optimization Engine</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-opticrop sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/"><i class="fa-solid fa-leaf"></i> Opti<span>Crop</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/crop">Crop Recommendation</a></li>
+          <li class="nav-item"><a class="nav-link" href="/fertilizer">Fertilizer Recommendation</a></li>
+          <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-section text-center">
+    <div class="container position-relative">
+      <div class="hero-badge"><i class="fa-solid fa-seedling"></i> AI-Powered Agriculture</div>
+      <h1>OptiCrop</h1>
+      <p class="lead col-lg-8 mx-auto">
+        Smart Agricultural Production Optimization Engine — get instant, data-driven
+        crop recommendations, fertilizer guidance, live weather insights and yield
+        estimates powered by Machine Learning.
+      </p>
+      <div class="mt-4">
+        <a href="/crop" class="btn btn-opticrop me-2"><i class="fa-solid fa-wheat-awn"></i> Recommend My Crop</a>
+        <a href="/fertilizer" class="btn btn-outline-light">Fertilizer Guide</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="container py-5">
+    <div class="text-center mb-5">
+      <h2 class="section-title">What OptiCrop Does</h2>
+      <p class="section-subtitle">Everything a farmer or agronomist needs, in one place.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
+          <h5>Crop Recommendation</h5>
+          <p class="text-muted">Enter soil nutrients and climate data to get the best-suited crop, powered by a Random Forest model trained on real agronomic data.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-flask"></i></div>
+          <h5>Fertilizer Recommendation</h5>
+          <p class="text-muted">Compare your soil's N-P-K levels against ideal crop requirements and receive a clear fertilizer action plan.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-cloud-sun-rain"></i></div>
+          <h5>Live Weather</h5>
+          <p class="text-muted">Real-time temperature, humidity, rainfall and conditions via the OpenWeather API for any city.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h5>Yield Prediction</h5>
+          <p class="text-muted">Get an approximate expected yield (tonnes/hectare) based on your soil and climate inputs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Weather Widget -->
+  <section class="container py-4">
+    <div class="row g-4 align-items-stretch">
+      <div class="col-lg-6">
+        <div class="form-card h-100">
+          <h4 class="mb-3"><i class="fa-solid fa-cloud-sun"></i> Check Live Weather</h4>
+          <form id="weather-form" class="d-flex gap-2 mb-3">
+            <input type="text" class="form-control" name="city" placeholder="Enter city name (e.g. Ongole)" required>
+            <button type="submit" class="btn btn-opticrop" id="weather-submit-btn">
+              <span class="normal-label">Search</span>
+              <span class="spinner-border spinner-border-sm loading-spinner" id="weather-spinner"></span>
+            </button>
+          </form>
+          <div class="error-box" id="weather-error"></div>
+          <div class="weather-card" id="weather-result" style="display:none;">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h5 id="weather-city" class="mb-0"></h5>
+                <small id="weather-condition"></small>
+              </div>
+              <div class="weather-temp" id="weather-temp"></div>
+            </div>
+            <hr class="border-light">
+            <div class="d-flex justify-content-between">
+              <span><i class="fa-solid fa-droplet"></i> Humidity: <span id="weather-humidity"></span></span>
+              <span><i class="fa-solid fa-cloud-rain"></i> Rainfall: <span id="weather-rainfall"></span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="feature-card h-100 d-flex flex-column justify-content-center">
+          <h4 class="mb-3"><i class="fa-solid fa-bolt"></i> Why OptiCrop?</h4>
+          <ul class="list-unstyled">
+            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i>99%+ accurate Random Forest crop classifier trained on 2,200+ real soil samples across 22 crops.</li>
+            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i>Transparent, explainable fertilizer logic — no black box.</li>
+            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i>Live weather context to support field decisions.</li>
+            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i>Built for farmers, students and agri-tech developers alike.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-opticrop">
+    <div class="container text-center">
+      <h5><i class="fa-solid fa-leaf"></i> OptiCrop</h5>
+      <p class="mb-2">Smart Agricultural Production Optimization Engine</p>
+      <div class="mb-3">
+        <a href="/" class="mx-2">Home</a>
+        <a href="/crop" class="mx-2">Crop</a>
+        <a href="/fertilizer" class="mx-2">Fertilizer</a>
+        <a href="/dashboard" class="mx-2">Dashboard</a>
+        <a href="/about" class="mx-2">About</a>
+        <a href="/contact" class="mx-2">Contact</a>
+      </div>
+      <small>&copy; 2026 OptiCrop. Built for the APSCHE Internship Program.</small>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

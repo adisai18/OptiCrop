@@ -1,0 +1,49 @@
+[
+  {
+    "type": "fertilizer",
+    "details": {
+      "crop": "rice",
+      "inputs": {
+        "N": 90.0,
+        "P": 42.0,
+        "K": 43.0
+      },
+      "result": "Balanced NPK (e.g., 19:19:19)"
+    },
+    "timestamp": "2026-07-14 17:22:24"
+  },
+  {
+    "type": "crop",
+    "details": {
+      "inputs": {
+        "N": 90.0,
+        "P": 42.0,
+        "K": 43.0,
+        "temperature": 25.0,
+        "humidity": 80.0,
+        "ph": 6.5,
+        "rainfall": 200.0
+      },
+      "result": "rice",
+      "confidence": 52.0
+    },
+    "timestamp": "2026-07-14 17:22:05"
+  },
+  {
+    "type": "crop",
+    "details": {
+      "inputs": {
+        "N": 90.0,
+        "P": 42.0,
+        "K": 43.0,
+        "temperature": 25.5,
+        "humidity": 80.0,
+        "ph": 6.5,
+        "rainfall": 200.0
+      },
+      "result": "rice",
+      "confidence": 52.0
+    },
+    "timestamp": "2026-07-14 17:17:00"
+  }
+]
